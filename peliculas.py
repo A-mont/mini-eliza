@@ -1,36 +1,29 @@
-"""Chatbot temático de películas y recomendaciones de cine."""
-from chatbot import Chatbot
+from peliculas import ChatbotPeliculas
 
-class ChatbotPeliculas(Chatbot):
-    """Crítico y recomendador de cine virtual."""
+def iniciar_chat():
+    bot = ChatbotPeliculas()
+    print(f"--- {bot} Inicializado ---")
+    print("CineBot: ¡Hola! Soy un experto en cine. Dime cómo te llamas o de qué quieres hablar.")
     
-    def __init__(self):
-        """Define el nombre del bot y sus reglas específicas de conversación."""
-        super().__init__("CineBot")
-        self.reglas = [
-            (r"\b(?:hola|buen[oa]s)\b",
-             ["¡Hola cinéfilo! ¿De qué película o género te gustaría hablar hoy?"]),
+    while True:
+        entrada_usuario = input("Tú: ")
+        
+        if entrada_usuario.lower() in ['salir', 'adiós', 'adios', 'chau']:
+            nombre = bot.nombre_usuario if bot.nombre_usuario else ""
+            print(f"{bot.nombre}: ¡Nos vemos en el próximo estreno {nombre}!")
+            break
             
-            (r"no me gusta la pel[ií]cula (.*)",
-             ["¿Por qué no te gustó {0}? ¿Fue por el final o los actores?",
-              "Vaya, {0} suele dividir opiniones. ¿Qué le cambiarías?"]),
-            
-            (r"me gusta la pel[ií]cula (.*)",
-             ["¡Buenísima elección! ¿Qué es lo que más rescatas de {0}?",
-              "¿Cuántas veces has visto {0}? Es un clásico moderno."]),
-            
-            (r"quiero ver una de (.*)",
-             ["Si buscas de {0}, te sugiero revisar las más premiadas.",
-              "¡Excelente plan! ¿Prefieres un estreno de {0} o algo clásico?"]),
-            
-            (r"cu[aá]nto cuesta|precio|boleto",
-             ["Los boletos digitales están en $85 pesos y los miércoles hay 2x1."]),
-            
-            (r"recomienda|sugiere",
-             ["Te recomiendo ver 'Interstellar' si te gusta la ciencia ficción o 'Parasite' para algo de suspenso."]),
-            
-            (r"(.*)",
-             ["¿Qué actores o directores te gustan de {0}?",
-              "Cuéntame más sobre tu relación con el cine.",
-              "¿Prefieres ver {0} en el cine o desde la comodidad de tu casa?"])
-        ]
+        respuesta = bot.responder(entrada_usuario)
+        
+        # Interceptamos el marcador de historial para imprimir la lista formateada
+        if respuesta == "%historial":
+            if bot.historial_peliculas:
+                peliculas_formateadas = ", ".join(f"'{p}'" for p in bot.historial_peliculas)
+                print(f"{bot.nombre}: Hasta ahora hemos mencionado: {peliculas_formateadas}.")
+            else:
+                print(f"{bot.nombre}: Todavía no has mencionado ninguna película en nuestra sesión.")
+        else:
+            print(f"{bot.nombre}: {respuesta}")
+
+if __name__ == "__main__":
+    iniciar_chat()
