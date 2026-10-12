@@ -1,15 +1,31 @@
+<<<<<<< HEAD
 
 import random
 import re
 import unicodedata
 
+=======
+import random 
+import re
+>>>>>>> d4fb3658eea63667caed66d49fb8744d0bfd3020
 
 class ChatbotPeliculas:
     def __init__(self, nombre="ELIZA"):
         self.nombre = nombre
         self.historial_peliculas = set()
+<<<<<<< HEAD
 
         # Reglas de conversación: de la más específica a la más general
+=======
+        self.reflejos = {
+            "yo": "tú", "mi": "tu", "mis": "tus", "me": "te",
+            "soy": "eres", "estoy": "estás", "quiero": "quieres",
+            "tengo": "tienes", "tu": "mi", "tus": "mis", "vi": "viste",
+            "fui": "fuiste", "me gusta": "te gusta"
+        }
+        
+        # Las reglas van de la más específica a la más general
+>>>>>>> d4fb3658eea63667caed66d49fb8744d0bfd3020
         self.reglas = [
             (
                 r".*\b(recomienda|recomiéndame|recomendar|recomiendame)\b.*",
@@ -85,6 +101,7 @@ class ChatbotPeliculas:
         ]
 
     def __str__(self):
+<<<<<<< HEAD
         return f"{self.nombre} ({len(self.reglas)} reglas)"
 
     def normalizar(self, texto):
@@ -134,3 +151,41 @@ if __name__ == "__main__":
             print(f"\n{bot.nombre}: ¡Hasta pronto!")
             break
         
+=======
+         return f"{self.nombre} ({len(self.reglas)} reglas)"   
+
+    def reflejar(self, fragmento):
+        """Intercambia los pronombres si la regla captura grupos de texto."""
+        if not fragmento:
+            return ""
+        palabras = fragmento.lower().split()
+        return ' '.join(self.reflejos.get(p, p) for p in palabras)
+
+    def responder(self, texto):
+        """Busca una coincidencia con las reglas y devuelve una respuesta aleatoria."""
+        texto_limpio = texto.lower().strip(".,!? ¿¡")
+        
+        for patron, respuestas in self.reglas:
+            match = re.match(patron, texto_limpio, re.IGNORECASE)
+            if match:
+                respuesta = random.choice(respuestas)
+                # Si la respuesta necesita rellenar campos con los grupos capturados de la regex
+                if match.groups() and "{0}" in respuesta:
+                    grupos = [self.reflejar(g) for g in match.groups()]
+                    return respuesta.format(*grupos)
+                return respuesta
+                
+        return "Cuéntame más sobre tus gustos en el cine."
+
+# --- Ejemplo de Uso ---
+if __name__ == "__main__":
+    bot = ChatbotPeliculas()
+    print(f"--- {bot} Inicializado ---")
+    print("Escribe 'salir' para terminar el chat.\n")
+    
+    while True:
+        usuario = input("Tú: ")
+        if usuario.lower() == "salir":
+            break
+        print(f"{bot.nombre}: {bot.responder(usuario)}")
+>>>>>>> d4fb3658eea63667caed66d49fb8744d0bfd3020
