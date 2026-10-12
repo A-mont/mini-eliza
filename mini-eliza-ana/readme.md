@@ -41,4 +41,4 @@ En realidad, el chatbot sigue instrucciones previamente definidas y no necesaria
 
 markdown
 captura de pantalla 
-(<Captura de pantalla .png-1.png>)
+"Captura de pantalla .png-1.png"
