@@ -1,36 +1,44 @@
-"""punto de entrada:python main.py""""
 
-from pizza import Chatbotpizza
+## Descripción
 
-def main():
+Este proyecto consiste en un chatbot desarrollado en Python para una pizzería. Su función es responder preguntas de los clientes sobre las pizzas y simular una conversación para ayudarles a realizar un pedido.
 
-"""Ciclo principal de la conversación.""""
+## Cómo ejecutar el programa
 
-bot Chatbotpizza()
+1. Abre la carpeta pizza en Visual Studio Code.
 
-print(bot)
+2. Abre la terminal dentro de esa carpeta.
 
-historial = []
+3. Ejecuta el programa con el siguiente comando:
 
-while True:
+   python chatbot.py
 
-texto input("Tú: ")
+## Conversación de ejemplo (6 turnos)
 
-if texto.lower().strip("1") in ("adiós", "adios"): print(f"(bot.nombre): ¡Gracias por tu visita!")
+*Cliente:* ¡Hola!
+*Bot:* ¡Hola! Bienvenido a nuestra pizzería. ¿Qué pizza te gustaría pedir?
 
-break
+*Cliente:* ¿Qué pizzas tienen?
+*Bot:* Tenemos pizza de pepperoni, queso y hawaiana.
 
-respuesta bot.responder (texto)
+*Cliente:* Quiero una hawaiana.
+*Bot:* ¡Excelente elección! ¿Qué tamaño prefieres?
 
-historial.append((texto, respuesta))
+*Cliente:* Mediana.
+*Bot:* Perfecto, elegiste una pizza hawaiana mediana.
 
-print(f"(bot.nombre): (respuesta)")
+*Cliente:* ¿Puedo pedir un refresco?
+*Bot:* ¡Claro! Puedes agregar un refresco a tu pedido.
 
-print("\n--- Conversación.")
+*Cliente:* Gracias.
+*Bot:* ¡Gracias por elegir nuestra pizzería! Que disfrutes tu pedido.
 
-for usuario, bot_dijo in historial:
+## Reflexión
 
-print("Tú: (usuario)\n(bot.nombre): (bot_dijo)")
+Mi bot no comprende los mensajes como lo hace una persona, sino que responde mediante reglas y palabras clave programadas en Python.
+Esto se relaciona con el efecto ELIZA, porque sus respuestas pueden parecer inteligentes y hacer creer al usuario que realmente comprende la conversación.
+En realidad, el chatbot sigue instrucciones previamente definidas y no necesariamente entiende el significado o el contexto de lo que escribe el cliente.
 
-if _name_="main__":
-main()
+
+markdown
+(./mini-eliza-anaCaptura de pantalla .png-1.png>)
