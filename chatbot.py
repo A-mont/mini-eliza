@@ -1,5 +1,5 @@
+import random 
 import re
-import random
 
 class ChatbotPeliculas:
     def __init__(self, nombre="ELIZA"):
@@ -12,6 +12,7 @@ class ChatbotPeliculas:
             "fui": "fuiste", "me gusta": "te gusta"
         }
         
+        # Las reglas van de la más específica a la más general
         self.reglas = [
             (r".*\b(recomienda|recomiéndame|recomendar)\b.*", [
                 "¡Claro! ¿Qué género te apetece ver hoy: terror, comedia o acción?",
@@ -36,10 +37,40 @@ class ChatbotPeliculas:
             ])
         ]
 
+    def __str__(self):
+         return f"{self.nombre} ({len(self.reglas)} reglas)"   
+
+    def reflejar(self, fragmento):
+        """Intercambia los pronombres si la regla captura grupos de texto."""
+        if not fragmento:
+            return ""
+        palabras = fragmento.lower().split()
+        return ' '.join(self.reflejos.get(p, p) for p in palabras)
+
     def responder(self, texto):
+        """Busca una coincidencia con las reglas y devuelve una respuesta aleatoria."""
+        texto_limpio = texto.lower().strip(".,!? ¿¡")
+        
         for patron, respuestas in self.reglas:
-            match = re.match(patron, texto, re.IGNORECASE)
+            match = re.match(patron, texto_limpio, re.IGNORECASE)
             if match:
                 respuesta = random.choice(respuestas)
+                # Si la respuesta necesita rellenar campos con los grupos capturados de la regex
+                if match.groups() and "{0}" in respuesta:
+                    grupos = [self.reflejar(g) for g in match.groups()]
+                    return respuesta.format(*grupos)
                 return respuesta
+                
         return "Cuéntame más sobre tus gustos en el cine."
+
+# --- Ejemplo de Uso ---
+if __name__ == "__main__":
+    bot = ChatbotPeliculas()
+    print(f"--- {bot} Inicializado ---")
+    print("Escribe 'salir' para terminar el chat.\n")
+    
+    while True:
+        usuario = input("Tú: ")
+        if usuario.lower() == "salir":
+            break
+        print(f"{bot.nombre}: {bot.responder(usuario)}")
