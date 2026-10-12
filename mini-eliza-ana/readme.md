@@ -39,6 +39,6 @@ Mi bot no comprende los mensajes como lo hace una persona, sino que responde med
 Esto se relaciona con el efecto ELIZA, porque sus respuestas pueden parecer inteligentes y hacer creer al usuario que realmente comprende la conversación.
 En realidad, el chatbot sigue instrucciones previamente definidas y no necesariamente entiende el significado o el contexto de lo que escribe el cliente.
 
+
 markdown
-captura de pantalla 
-"Captura de pantalla .png-1.png"
+(./mini-eliza-anaCaptura de pantalla .png-1.png>)
