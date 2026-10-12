@@ -1,13 +1,12 @@
-"""Chatbot temático de música."""
-import re
+#Chatbot temático de música.
 from chatbot import Chatbot
 
-class ChatbotMusica(Chatbot):
-    """Asistente virtual que conversa sobre música."""
+class Chatbotmusica(Chatbot):
+    #Asistente virtual que conversa sobre música.
 
     def __init__(self):
-        super().__init__("Melody")
-        self.reglas = [
+         super().__init__("Melody")
+         self.reglas = [
             (r"\b(?:hola|buenos días|buenas tardes|buenas noches)\b",
              ["¡Hola! Bienvenido al mundo de la música. ¿Qué tipo de música te gusta?"]),
 
