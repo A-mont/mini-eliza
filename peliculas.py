@@ -8,8 +8,31 @@ class ChatbotPeliculas(Chatbot):
 
     def __init__(self):
         """Inicializa el chatbot especializado en películas."""
-        super().__init__("CineBot")
+        super().__init__()  # Llama al constructor de la clase base Chatbot
 
+        # Diccionario de reflexión (búsqueda y reemplazo de pronombres/verbos)
+        self.reflexiones = {
+            "mi": "tu",
+            "mio": "tuyo",
+            "mia": "tuya",
+            "mis": "tus",
+            "yo": "tú",
+            "estoy": "estás",
+            "soy": "eres",
+            "tengo": "tienes",
+            "me": "te",
+            "tu": "mi",
+            "tuyo": "mío",
+            "tuya": "mía",
+            "tus": "mis",
+            "tú": "yo",
+            "estás": "estoy",
+            "eres": "soy",
+            "tienes": "tengo",
+            "te": "me"
+        }
+
+        # Reglas específicas para el bot de películas
         self.reglas = [
             (
                 r"\b(?:hola|buen[oa]s)\b",
@@ -18,7 +41,6 @@ class ChatbotPeliculas(Chatbot):
                     "¿Qué película te gustaría comentar?"
                 ]
             ),
-
             (
                 r"me gusta (.*)",
                 [
@@ -26,7 +48,6 @@ class ChatbotPeliculas(Chatbot):
                     "¿Qué es lo que más te gusta de esa película?"
                 ]
             ),
-
             (
                 r"no me gusta (.*)",
                 [
@@ -34,14 +55,12 @@ class ChatbotPeliculas(Chatbot):
                     "¿Qué otra película prefieres?"
                 ]
             ),
-
             (
                 r"quiero ver (.*)",
                 [
                     "¡Buena elección! {0} podría ser una buena opción."
                 ]
             ),
-
             (
                 r"mi película favorita es (.*)",
                 [
@@ -49,7 +68,6 @@ class ChatbotPeliculas(Chatbot):
                     "¿Qué es lo que más te gusta de ella?"
                 ]
             ),
-
             (
                 r"recomienda|recomiéndame",
                 [
@@ -57,7 +75,6 @@ class ChatbotPeliculas(Chatbot):
                     "comedia o ciencia ficción. ¿Qué género prefieres?"
                 ]
             ),
-
             (
                 r"género|genero",
                 [
@@ -65,7 +82,6 @@ class ChatbotPeliculas(Chatbot):
                     "romance, aventura y ciencia ficción."
                 ]
             ),
-
             (
                 r"cuánto dura|cuanto dura|duración|duracion",
                 [
@@ -74,7 +90,6 @@ class ChatbotPeliculas(Chatbot):
                     "que duran más de dos horas."
                 ]
             ),
-
             (
                 r"(.*)",
                 [
