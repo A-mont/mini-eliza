@@ -144,4 +144,4 @@ Al realizar este proyecto aprendí que un chatbot puede responder a diferentes f
 
 ## Conclusión
 
-Este proyecto me ayudó a practicar Python, especialmente la programación orientada a objetos, las expresiones regulares, las clases, la herencia y los métodos. También aprendí cómo organizar un proyecto en diferentes archivos y cómo probar un chatbot desde la terminal.
+Este proyecto me ayudó a practicar Python, especialmente la programación orientada a objetos, las expresiones regulares, las clases, la herencia y los métodos. También aprendí cómo organizar un proyecto en diferentes archivos y cómo probar un chatbot. 

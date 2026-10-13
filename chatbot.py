@@ -2,42 +2,69 @@ import re
 
 class Chatbot:
     def __init__(self):
-        # Estructura de reglas: (patrón_regex, [lista_de_respuestas])
+        # Estructura de reglas adaptada al CineBot: (patrón_regex, [lista_de_respuestas])
         self.reglas = [
             (
-                r"hola|buenos dias|buenas tardes", 
+                r"\b(?:hola|buen[oa]s)\b",
                 [
-                    "Hola, ¿cómo estás hoy?", 
-                    "Hola, ¿de qué te gustaría hablar?"
+                    "¡Hola! Bienvenido al mundo del cine. ¿Qué película te gustaría comentar?",
+                    "¡Hola! Soy CineBot. ¿De qué película o género quieres hablar hoy?"
                 ]
             ),
             (
-                r"me siento (.*)", 
+                r"me gusta (.*)",
                 [
-                    "¿Por qué te sientes {}?", 
-                    "¿Qué crees que te hace sentir {}?", 
-                    "¿Te pasa seguido que te sientes {}?"
+                    "¡Qué bien! A mí también me interesa {}. ¿Qué es lo que más te gusta de esa película?",
+                    "Interesante. ¿Qué otras películas parecidas a {} has visto?"
                 ]
             ),
             (
-                r"mi (.*) es (.*)", 
+                r"no me gusta (.*)",
                 [
-                    "¿Por qué crees que tu {} es {}?", 
-                    "Hablemos más de tu {}."
+                    "Entiendo que no te guste {}. ¿Qué otra película prefieres?",
+                    "¿Qué es lo que menos te convenció de {}?"
                 ]
             ),
             (
-                r"tengo miedo de (.*)", 
+                r"quiero ver (.*)",
                 [
-                    "¿Qué es lo que más te asusta de {}?", 
-                    "¿Por qué te da miedo {}?"
+                    "¡Buena elección! {} podría ser una excelente opción.",
+                    "¿Qué te motivó a querer ver {}?"
                 ]
             ),
             (
-                r"(.*) madre (.*)|(.*) padre (.*)",
+                r"mi película favorita es (.*)",
                 [
-                    "Cuéntame más sobre tu familia.",
-                    "¿Cómo es la relación con tus padres?"
+                    "¡{} suena increíble! ¿Qué es lo que más te apasiona de ella?",
+                    "Es un clásico. ¿Cuántas veces has visto {}?"
+                ]
+            ),
+            (
+                r"recomienda|recomiéndame",
+                [
+                    "Te recomiendo ver una película de aventura, comedia o ciencia ficción. ¿Qué género prefieres?",
+                    "Si buscas algo bueno, el cine de suspenso o drama nunca falla. ¿Te llama la atención alguno?"
+                ]
+            ),
+            (
+                r"género|genero",
+                [
+                    "Hay muchos géneros fascinantes: acción, comedia, terror, romance, aventura y ciencia ficción.",
+                    "A mí me gustan todos los géneros, pero el suspenso es especial. ¿Cuál es tu favorito?"
+                ]
+            ),
+            (
+                r"cuánto dura|cuanto dura|duración|duracion",
+                [
+                    "La duración depende de la película. Hay películas de menos de 90 minutos y otras que duran más de dos horas."
+                ]
+            ),
+            (
+                r"(.*)",
+                [
+                    "Cuéntame más sobre esa película.",
+                    "¿Qué otra película te gusta?",
+                    "Interesante. ¿Qué opinas de esa película?"
                 ]
             )
         ]
